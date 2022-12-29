@@ -60,7 +60,7 @@ By utilizing TorchLevy, it is possible to achieve a staggering **performance boo
 
 The significant increase was made possible through the implementation of two forms of parallel computing. The first involved the parallelization of input samples through the use of matrix operations, which enabled concurrent processing without interdependent inputs. The second involved the parallelization of integration through the transformation of both the likelihood and score into Fourier transforms and the utilization of numerical integration techniques. In order to facilitate this parallelism, we employed the python module [torchquad](https://github.com/esa/torchquad).
 
-## performance boost via caching
+## Performance boost via caching
 
 In addition to these parallelization techniques, TorchLevy also offers a caching function to further improve performance by reducing computation costs and conserving memory. This function stores outputs at 0.01 intervals in advance and calculates them using linear interpolation. The interpolation process is also parallelized using the torch library and can be easily accessed by setting the `is_cache=True` during function calls from the `class TorchLevy`. Caching is useful when a function call is repeatedly needed.
 
