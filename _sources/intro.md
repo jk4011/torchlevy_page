@@ -72,9 +72,9 @@ name: sample_plot_comparison
 ```
 
 
-The extension of the $\alpha$-stable distribution to $n$ dimensions results in a distribution that **lacks isotropy**, unlike the n-dimensional normal distribution. In our research, we discovered that the isotropy of noise is crucial for the performance of the score-base generative model. To address this, we propose an **isotropic alpha-stable distribution**, which preserves the heavy tail characteristics of the standard $\alpha$-stable distribution while also exhibiting isotropy. TorchLevy library offers sampling, probability density function, and score function implementations for the isotropic $\alpha$-stable distribution. These functions can be easily accessed by setting the parameter `is_isotropic=True` when calling functions from `class LevyStable`.
+The extension of the $\alpha$-stable distribution to $n$ dimensions results in a distribution that **lacks isotropy**, unlike the n-dimensional normal distribution. We propose an **isotropic alpha-stable distribution**, which preserves the heavy tail characteristics of the standard $\alpha$-stable distribution while also exhibiting isotropy. TorchLevy library offers sampling, probability density function, and score function implementations for the isotropic $\alpha$-stable distribution. These functions can be easily accessed by setting the parameter `is_isotropic=True` when calling functions from `class LevyStable`.
 
-## Combined score of normal and $\alpha$-stable distribution
+<!-- ## Combined score of normal and $\alpha$-stable distribution
 
 The Time-reversal formula for SDEs with Lévy Processes is given by the following equation. 
 
@@ -82,9 +82,9 @@ The Time-reversal formula for SDEs with Lévy Processes is given by the followin
 d \overleftarrow{X}_t=\left(b\left(t, \overleftarrow{X}_t\right)-\sigma_B^2(t) \partial_x \log p_t\left(\overleftarrow{X}_t\right)-\alpha \cdot \sigma_L^\alpha(t) \frac{\partial_{|x|}^{\alpha-2} \nabla_x p_t\left(\vec{X}_t\right)}{p_t\left(\vec{X}_t\right)}\right) d t+\sigma_B(t) d \bar{B}_t+\sigma_L(t) d \bar{L}_t^\alpha
 ```
 
-If $\sigma_B, \sigma_L>0$ in the above equation, then the combined score must be calculated. Fortunately, the TorchLevy library offers a convenient way to calculate this score through `class LevyGaussian` .
+If $\sigma_B, \sigma_L>0$ in the above equation, then the combined score must be calculated. Fortunately, the TorchLevy library offers a convenient way to calculate this score through `class LevyGaussian` . -->
 
-## Rectified Enhanced Lévy Score (ReELS)
+<!-- ## Rectified Enhanced Lévy Score (ReELS)
 
 To denoise the large noise at the heavy tail without losing the nature of the Lévy score function, we propose Rectified Enhanced Lévy Score (ReELS) as follows:
 
@@ -93,8 +93,9 @@ To denoise the large noise at the heavy tail without losing the nature of the L�
 S_\alpha(x) & : x \in I_\alpha \\
 -\operatorname{sgn}(x) \hat{c}|x|^{\hat{\beta}} & : \text { otherwise }
 \end{array} \quad \hat{\beta}(\alpha) \in(0,1) .\right.
-```
-.
+``` -->
+
+
 <!-- 
 # Score-based generative model with Levy processes
 

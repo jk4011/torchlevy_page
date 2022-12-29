@@ -54,7 +54,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="&lt;no title&gt;" href="levy_stable.html" />
+    <link rel="next" title="LevyStable" href="levy_stable.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -114,7 +114,19 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="levy_stable.html">
+   LevyStable
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="levy_gaussian.html">
+   LevyGaussian
+  </a>
+ </li>
+</ul>
+
     </div>
 </nav></div>
         <div class="bd-sidebar__bottom">
@@ -319,20 +331,6 @@ title="Print to PDF"
      -stable distribution
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#combined-score-of-normal-and-alpha-stable-distribution">
-     Combined score of normal and
-     <span class="math notranslate nohighlight">
-      \(\alpha\)
-     </span>
-     -stable distribution
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#rectified-enhanced-levy-score-reels">
-     Rectified Enhanced Lévy Score (ReELS)
-    </a>
-   </li>
   </ul>
  </li>
 </ul>
@@ -381,20 +379,6 @@ title="Print to PDF"
       \(\alpha\)
      </span>
      -stable distribution
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#combined-score-of-normal-and-alpha-stable-distribution">
-     Combined score of normal and
-     <span class="math notranslate nohighlight">
-      \(\alpha\)
-     </span>
-     -stable distribution
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#rectified-enhanced-levy-score-reels">
-     Rectified Enhanced Lévy Score (ReELS)
     </a>
    </li>
   </ul>
@@ -482,24 +466,26 @@ title="Print to PDF"
 <p><span class="caption-number">Fig. 3 </span><span class="caption-text">2D samples from symmetric  <span class="math notranslate nohighlight">\(\alpha\)</span>-stable distribution and isotropic <span class="math notranslate nohighlight">\(\alpha\)</span>-stable distribution. Symmtric distribution shows depedency of distribution and direction.</span><a class="headerlink" href="#sample-plot-comparison" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<p>The extension of the <span class="math notranslate nohighlight">\(\alpha\)</span>-stable distribution to <span class="math notranslate nohighlight">\(n\)</span> dimensions results in a distribution that <strong>lacks isotropy</strong>, unlike the n-dimensional normal distribution. In our research, we discovered that the isotropy of noise is crucial for the performance of the score-base generative model. To address this, we propose an <strong>isotropic alpha-stable distribution</strong>, which preserves the heavy tail characteristics of the standard <span class="math notranslate nohighlight">\(\alpha\)</span>-stable distribution while also exhibiting isotropy. TorchLevy library offers sampling, probability density function, and score function implementations for the isotropic <span class="math notranslate nohighlight">\(\alpha\)</span>-stable distribution. These functions can be easily accessed by setting the parameter <code class="docutils literal notranslate"><span class="pre">is_isotropic=True</span></code> when calling functions from <code class="docutils literal notranslate"><span class="pre">class</span> <span class="pre">LevyStable</span></code>.</p>
-</section>
-<section id="combined-score-of-normal-and-alpha-stable-distribution">
-<h2>Combined score of normal and <span class="math notranslate nohighlight">\(\alpha\)</span>-stable distribution<a class="headerlink" href="#combined-score-of-normal-and-alpha-stable-distribution" title="Permalink to this headline">#</a></h2>
-<p>The Time-reversal formula for SDEs with Lévy Processes is given by the following equation.</p>
-<div class="math notranslate nohighlight">
-\[d \overleftarrow{X}_t=\left(b\left(t, \overleftarrow{X}_t\right)-\sigma_B^2(t) \partial_x \log p_t\left(\overleftarrow{X}_t\right)-\alpha \cdot \sigma_L^\alpha(t) \frac{\partial_{|x|}^{\alpha-2} \nabla_x p_t\left(\vec{X}_t\right)}{p_t\left(\vec{X}_t\right)}\right) d t+\sigma_B(t) d \bar{B}_t+\sigma_L(t) d \bar{L}_t^\alpha\]</div>
-<p>If <span class="math notranslate nohighlight">\(\sigma_B, \sigma_L&gt;0\)</span> in the above equation, then the combined score must be calculated. Fortunately, the TorchLevy library offers a convenient way to calculate this score through <code class="docutils literal notranslate"><span class="pre">class</span> <span class="pre">LevyGaussian</span></code> .</p>
-</section>
-<section id="rectified-enhanced-levy-score-reels">
-<h2>Rectified Enhanced Lévy Score (ReELS)<a class="headerlink" href="#rectified-enhanced-levy-score-reels" title="Permalink to this headline">#</a></h2>
-<p>To denoise the large noise at the heavy tail without losing the nature of the Lévy score function, we propose Rectified Enhanced Lévy Score (ReELS) as follows:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}\operatorname{ReELS}_\alpha(x)=\left\{\begin{array}{ll}
-S_\alpha(x) &amp; : x \in I_\alpha \\
--\operatorname{sgn}(x) \hat{c}|x|^{\hat{\beta}} &amp; : \text { otherwise }
-\end{array} \quad \hat{\beta}(\alpha) \in(0,1) .\right.\end{split}\]</div>
-<p>.</p>
+<p>The extension of the <span class="math notranslate nohighlight">\(\alpha\)</span>-stable distribution to <span class="math notranslate nohighlight">\(n\)</span> dimensions results in a distribution that <strong>lacks isotropy</strong>, unlike the n-dimensional normal distribution. We propose an <strong>isotropic alpha-stable distribution</strong>, which preserves the heavy tail characteristics of the standard <span class="math notranslate nohighlight">\(\alpha\)</span>-stable distribution while also exhibiting isotropy. TorchLevy library offers sampling, probability density function, and score function implementations for the isotropic <span class="math notranslate nohighlight">\(\alpha\)</span>-stable distribution. These functions can be easily accessed by setting the parameter <code class="docutils literal notranslate"><span class="pre">is_isotropic=True</span></code> when calling functions from <code class="docutils literal notranslate"><span class="pre">class</span> <span class="pre">LevyStable</span></code>.</p>
+<!-- ## Combined score of normal and $\alpha$-stable distribution
+
+The Time-reversal formula for SDEs with Lévy Processes is given by the following equation. 
+
+```{math}
+d \overleftarrow{X}_t=\left(b\left(t, \overleftarrow{X}_t\right)-\sigma_B^2(t) \partial_x \log p_t\left(\overleftarrow{X}_t\right)-\alpha \cdot \sigma_L^\alpha(t) \frac{\partial_{|x|}^{\alpha-2} \nabla_x p_t\left(\vec{X}_t\right)}{p_t\left(\vec{X}_t\right)}\right) d t+\sigma_B(t) d \bar{B}_t+\sigma_L(t) d \bar{L}_t^\alpha
+```
+
+If $\sigma_B, \sigma_L>0$ in the above equation, then the combined score must be calculated. Fortunately, the TorchLevy library offers a convenient way to calculate this score through `class LevyGaussian` . -->
+<!-- ## Rectified Enhanced Lévy Score (ReELS)
+
+To denoise the large noise at the heavy tail without losing the nature of the Lévy score function, we propose Rectified Enhanced Lévy Score (ReELS) as follows:
+
+```{math}
+\operatorname{ReELS}_\alpha(x)=\left\{\begin{array}{ll}
+S_\alpha(x) & : x \in I_\alpha \\
+-\operatorname{sgn}(x) \hat{c}|x|^{\hat{\beta}} & : \text { otherwise }
+\end{array} \quad \hat{\beta}(\alpha) \in(0,1) .\right.
+``` -->
 <!-- 
 # Score-based generative model with Levy processes
 
@@ -547,7 +533,7 @@ comparison betweem Ours(left) and DDPM(right) sampling. Generation based on Levy
     <a class='right-next' id="next-link" href="levy_stable.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">&lt;no title&gt;</p>
+        <p class="prev-next-title">LevyStable</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
