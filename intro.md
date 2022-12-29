@@ -84,7 +84,7 @@ d \overleftarrow{X}_t=\left(b\left(t, \overleftarrow{X}_t\right)-\sigma_B^2(t) \
 
 If $\sigma_B, \sigma_L>0$ in the above equation, then the combined score must be calculated. Fortunately, the TorchLevy library offers a convenient way to calculate this score through `class LevyGaussian` .
 
-## Rectified Enhanced Lévy Score (ReELS)
+<!-- ## Rectified Enhanced Lévy Score (ReELS)
 
 To denoise the large noise at the heavy tail without losing the nature of the Lévy score function, we propose Rectified Enhanced Lévy Score (ReELS) as follows:
 
@@ -93,8 +93,9 @@ To denoise the large noise at the heavy tail without losing the nature of the L�
 S_\alpha(x) & : x \in I_\alpha \\
 -\operatorname{sgn}(x) \hat{c}|x|^{\hat{\beta}} & : \text { otherwise }
 \end{array} \quad \hat{\beta}(\alpha) \in(0,1) .\right.
-```
-.
+``` -->
+
+
 <!-- 
 # Score-based generative model with Levy processes
 
