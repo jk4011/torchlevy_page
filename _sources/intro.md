@@ -47,7 +47,7 @@ One important property of $\alpha$-stable Lévy processes is the **jump property
 
 # Why use TorchLevy?
 
-There are several benefits from using TorchLevy. Here's the reason below.
+Previously, the `class levy_stable` of `scipy` provided pdf and sampling functions for $\alpha$-stable distribution. However, the article below explains the advantage of using `torchlevy` rather than `scipy`.
 
 ## performance boost
 By utilizing TorchLevy, it is possible to achieve a staggering **performance boost of over x1000** in comparison to using [scipy's levy_stable](https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.levy_stable.html) function. This means that computationally demanding tasks, such as those involved in deep learning, can be efficiently carried out with minimal overhead, including sampling and calculating probability density functions. For a more detailed breakdown of these figures, please refer to the table provided below.
@@ -58,6 +58,7 @@ By utilizing TorchLevy, it is possible to achieve a staggering **performance boo
 | TorchLevy | 0.009s (**x1000** faster) | 0.026s (**x2000** faster) | 0.003s (**x4000** faster) |
 
 
+The significant increase was made possible through the implementation of two forms of parallel computing. The first involved the parallelization of input samples through the use of matrix operations, which enabled concurrent processing without interdependent inputs. The second involved the parallelization of integration through the transformation of both the likelihood and score into Fourier transforms and the utilization of numerical integration techniques. In order to facilitate this parallelism, we employed the python module [torchquad](https://github.com/esa/torchquad).
 
 
 ## isotropic $\alpha$-stable distribution
@@ -67,22 +68,24 @@ By utilizing TorchLevy, it is possible to achieve a staggering **performance boo
 width: 30em
 name: sample_plot_comparison
 ---
-2D samples from symmetric  $\alpha$-stable distribution and isotropic $\alpha$-stable distribution.
+2D samples from symmetric  $\alpha$-stable distribution and isotropic $\alpha$-stable distribution. Symmtric distribution shows depedency of distribution and direction.
+```
 
 
-The extension of the $\alpha$-stable distribution to $n$ dimensions results in a distribution that lacks isotropy, unlike the n-dimensional normal distribution. In our research, we discovered that the isotropy of noise is crucial for the performance of the score-base generative model. To address this, we propose an isotropic alpha-stable distribution, which preserves the heavy tail characteristics of the standard $\alpha$-stable distribution while also exhibiting isotropy. TorchLevy library offers sampling, probability density function, and score function implementations for the isotropic $\alpha$-stable distribution. These functions can be easily accessed by setting the parameter `is_isotropic=True` when calling functions from `class LevyStable`.
+The extension of the $\alpha$-stable distribution to $n$ dimensions results in a distribution that **lacks isotropy**, unlike the n-dimensional normal distribution. In our research, we discovered that the isotropy of noise is crucial for the performance of the score-base generative model. To address this, we propose an **isotropic alpha-stable distribution**, which preserves the heavy tail characteristics of the standard $\alpha$-stable distribution while also exhibiting isotropy. TorchLevy library offers sampling, probability density function, and score function implementations for the isotropic $\alpha$-stable distribution. These functions can be easily accessed by setting the parameter `is_isotropic=True` when calling functions from `class LevyStable`.
 
-## combined score of normal and alpha stable
+## combined score of normal and $\alpha$-stable distribution
 
-The Time-reversal formula for SDEs with Lévy Processes is given by the following equation. If $\sigma_B, \sigma_L>0$ in the equation, then the combined score must be calculated. Fortunately, the TorchLevy library offers a convenient way to calculate this score through `class LevyGaussian` .
+The Time-reversal formula for SDEs with Lévy Processes is given by the following equation. 
 
 ```{math}
 d \overleftarrow{X}_t=\left(b\left(t, \overleftarrow{X}_t\right)-\sigma_B^2(t) \partial_x \log p_t\left(\overleftarrow{X}_t\right)-\alpha \cdot \sigma_L^\alpha(t) \frac{\partial_{|x|}^{\alpha-2} \nabla_x p_t\left(\vec{X}_t\right)}{p_t\left(\vec{X}_t\right)}\right) d t+\sigma_B(t) d \bar{B}_t+\sigma_L(t) d \bar{L}_t^\alpha
 ```
 
-
+If $\sigma_B, \sigma_L>0$ in the above equation, then the combined score must be calculated. Fortunately, the TorchLevy library offers a convenient way to calculate this score through `class LevyGaussian` .
 
 ## Rectified Enhanced Lévy Score (ReELS)
+
 To denoise the large noise at the heavy tail without losing the nature of the Lévy score function, we propose Rectified Enhanced Lévy Score (ReELS) as follows:
 
 ```{math}
@@ -92,18 +95,18 @@ S_\alpha(x) & : x \in I_\alpha \\
 \end{array} \quad \hat{\beta}(\alpha) \in(0,1) .\right.
 ```
 .
-
+<!-- 
 # Score-based generative model with Levy processes
 
-Concluding our exploration of TorchLevy's capabilities, we present [score-based generative model with Levy processes](https://openreview.net/forum?id=ErzyBArv6Ue) which introduces Symmetric alpha stable noise as a replacement for traditional Gaussian noise in a diffusion model. This unique approach, made possible through the use of torchlevy, offers a novel approach to generating data. Our experimentation has demonstrated that this method performs comparably to DDPM, while achieving a faster convergence rate.
+Concluding our exploration of TorchLevy's capabilities, we present [score-based generative model with Levy processes](https://openreview.net/forum?id=ErzyBArv6Ue) which introduces Symmetric $\alpha$-stable noise as a replacement for traditional Gaussian noise in a diffusion model. This unique approach, made possible through the use of torchlevy, offers a novel approach to generating data. Our experimentation has demonstrated that this method performs comparably to DDPM, while achieving a faster convergence rate.
 
 ```{figure} assets/combined.gif
 ---
 width: 35em
 name: combined
 ---
-comparison betweem Ours(left) and DDPM(right) sampling. Generation based on Levy process(left) shows faster reconstruction speed.
-
+comparison betweem Ours(left) and DDPM(right) sampling. Generation based on Levy process(left) shows faster reconstruction speed. 
+```-->
 
 
 

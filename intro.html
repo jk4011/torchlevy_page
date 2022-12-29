@@ -54,7 +54,6 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Markdown Files" href="markdown.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -114,24 +113,7 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="markdown.html">
-   Markdown Files
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="notebooks.html">
-   Content with notebooks
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="markdown-notebooks.html">
-   Notebooks with MyST Markdown
-  </a>
- </li>
-</ul>
-
+        
     </div>
 </nav></div>
         <div class="bd-sidebar__bottom">
@@ -337,8 +319,12 @@ title="Print to PDF"
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#combined-score-of-normal-and-alpha-stable">
-     combined score of normal and alpha stable
+    <a class="reference internal nav-link" href="#combined-score-of-normal-and-alpha-stable-distribution">
+     combined score of normal and
+     <span class="math notranslate nohighlight">
+      \(\alpha\)
+     </span>
+     -stable distribution
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
@@ -347,11 +333,6 @@ title="Print to PDF"
     </a>
    </li>
   </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#score-based-generative-model-with-levy-processes">
-   Score-based generative model with Levy processes
-  </a>
  </li>
 </ul>
 
@@ -402,8 +383,12 @@ title="Print to PDF"
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#combined-score-of-normal-and-alpha-stable">
-     combined score of normal and alpha stable
+    <a class="reference internal nav-link" href="#combined-score-of-normal-and-alpha-stable-distribution">
+     combined score of normal and
+     <span class="math notranslate nohighlight">
+      \(\alpha\)
+     </span>
+     -stable distribution
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
@@ -412,11 +397,6 @@ title="Print to PDF"
     </a>
    </li>
   </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#score-based-generative-model-with-levy-processes">
-   Score-based generative model with Levy processes
-  </a>
  </li>
 </ul>
 
@@ -466,7 +446,7 @@ title="Print to PDF"
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="why-use-torchlevy">
 <h1>Why use TorchLevy?<a class="headerlink" href="#why-use-torchlevy" title="Permalink to this headline">#</a></h1>
-<p>There are several benefits from using TorchLevy. Here’s the reason below.</p>
+<p>Previously, the <code class="docutils literal notranslate"><span class="pre">class</span> <span class="pre">levy_stable</span></code> of <code class="docutils literal notranslate"><span class="pre">scipy</span></code> provided pdf and sampling functions for <span class="math notranslate nohighlight">\(\alpha\)</span>-stable distribution. However, the article below explains the advantage of using <code class="docutils literal notranslate"><span class="pre">torchlevy</span></code> rather than <code class="docutils literal notranslate"><span class="pre">scipy</span></code>.</p>
 <section id="performance-boost">
 <h2>performance boost<a class="headerlink" href="#performance-boost" title="Permalink to this headline">#</a></h2>
 <p>By utilizing TorchLevy, it is possible to achieve a staggering <strong>performance boost of over x1000</strong> in comparison to using <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.levy_stable.html">scipy’s levy_stable</a> function. This means that computationally demanding tasks, such as those involved in deep learning, can be efficiently carried out with minimal overhead, including sampling and calculating probability density functions. For a more detailed breakdown of these figures, please refer to the table provided below.</p>
@@ -491,24 +471,24 @@ title="Print to PDF"
 </tr>
 </tbody>
 </table>
+<p>The significant increase was made possible through the implementation of two forms of parallel computing. The first involved the parallelization of input samples through the use of matrix operations, which enabled concurrent processing without interdependent inputs. The second involved the parallelization of integration through the transformation of both the likelihood and score into Fourier transforms and the utilization of numerical integration techniques. In order to facilitate this parallelism, we employed the python module <a class="reference external" href="https://github.com/esa/torchquad">torchquad</a>.</p>
 </section>
 <section id="isotropic-alpha-stable-distribution">
 <h2>isotropic <span class="math notranslate nohighlight">\(\alpha\)</span>-stable distribution<a class="headerlink" href="#isotropic-alpha-stable-distribution" title="Permalink to this headline">#</a></h2>
 <figure class="align-default" id="sample-plot-comparison">
 <a class="reference internal image-reference" href="_images/sample_plot_comparison.png"><img alt="_images/sample_plot_comparison.png" src="_images/sample_plot_comparison.png" style="width: 30em;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 3 </span><span class="caption-text">2D samples from symmetric  <span class="math notranslate nohighlight">\(\alpha\)</span>-stable distribution and isotropic <span class="math notranslate nohighlight">\(\alpha\)</span>-stable distribution.</span><a class="headerlink" href="#sample-plot-comparison" title="Permalink to this image">#</a></p>
-<div class="legend">
-<p>The extension of the <span class="math notranslate nohighlight">\(\alpha\)</span>-stable distribution to <span class="math notranslate nohighlight">\(n\)</span> dimensions results in a distribution that lacks isotropy, unlike the n-dimensional normal distribution. In our research, we discovered that the isotropy of noise is crucial for the performance of the score-base generative model. To address this, we propose an isotropic alpha-stable distribution, which preserves the heavy tail characteristics of the standard <span class="math notranslate nohighlight">\(\alpha\)</span>-stable distribution while also exhibiting isotropy. TorchLevy library offers sampling, probability density function, and score function implementations for the isotropic <span class="math notranslate nohighlight">\(\alpha\)</span>-stable distribution. These functions can be easily accessed by setting the parameter <code class="docutils literal notranslate"><span class="pre">is_isotropic=True</span></code> when calling functions from <code class="docutils literal notranslate"><span class="pre">class</span> <span class="pre">LevyStable</span></code>.</p>
-</div>
+<p><span class="caption-number">Fig. 3 </span><span class="caption-text">2D samples from symmetric  <span class="math notranslate nohighlight">\(\alpha\)</span>-stable distribution and isotropic <span class="math notranslate nohighlight">\(\alpha\)</span>-stable distribution. Symmtric distribution shows depedency of distribution and direction.</span><a class="headerlink" href="#sample-plot-comparison" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
+<p>The extension of the <span class="math notranslate nohighlight">\(\alpha\)</span>-stable distribution to <span class="math notranslate nohighlight">\(n\)</span> dimensions results in a distribution that <strong>lacks isotropy</strong>, unlike the n-dimensional normal distribution. In our research, we discovered that the isotropy of noise is crucial for the performance of the score-base generative model. To address this, we propose an <strong>isotropic alpha-stable distribution</strong>, which preserves the heavy tail characteristics of the standard <span class="math notranslate nohighlight">\(\alpha\)</span>-stable distribution while also exhibiting isotropy. TorchLevy library offers sampling, probability density function, and score function implementations for the isotropic <span class="math notranslate nohighlight">\(\alpha\)</span>-stable distribution. These functions can be easily accessed by setting the parameter <code class="docutils literal notranslate"><span class="pre">is_isotropic=True</span></code> when calling functions from <code class="docutils literal notranslate"><span class="pre">class</span> <span class="pre">LevyStable</span></code>.</p>
 </section>
-<section id="combined-score-of-normal-and-alpha-stable">
-<h2>combined score of normal and alpha stable<a class="headerlink" href="#combined-score-of-normal-and-alpha-stable" title="Permalink to this headline">#</a></h2>
-<p>The Time-reversal formula for SDEs with Lévy Processes is given by the following equation. If <span class="math notranslate nohighlight">\(\sigma_B, \sigma_L&gt;0\)</span> in the equation, then the combined score must be calculated. Fortunately, the TorchLevy library offers a convenient way to calculate this score through <code class="docutils literal notranslate"><span class="pre">class</span> <span class="pre">LevyGaussian</span></code> .</p>
+<section id="combined-score-of-normal-and-alpha-stable-distribution">
+<h2>combined score of normal and <span class="math notranslate nohighlight">\(\alpha\)</span>-stable distribution<a class="headerlink" href="#combined-score-of-normal-and-alpha-stable-distribution" title="Permalink to this headline">#</a></h2>
+<p>The Time-reversal formula for SDEs with Lévy Processes is given by the following equation.</p>
 <div class="math notranslate nohighlight">
 \[d \overleftarrow{X}_t=\left(b\left(t, \overleftarrow{X}_t\right)-\sigma_B^2(t) \partial_x \log p_t\left(\overleftarrow{X}_t\right)-\alpha \cdot \sigma_L^\alpha(t) \frac{\partial_{|x|}^{\alpha-2} \nabla_x p_t\left(\vec{X}_t\right)}{p_t\left(\vec{X}_t\right)}\right) d t+\sigma_B(t) d \bar{B}_t+\sigma_L(t) d \bar{L}_t^\alpha\]</div>
+<p>If <span class="math notranslate nohighlight">\(\sigma_B, \sigma_L&gt;0\)</span> in the above equation, then the combined score must be calculated. Fortunately, the TorchLevy library offers a convenient way to calculate this score through <code class="docutils literal notranslate"><span class="pre">class</span> <span class="pre">LevyGaussian</span></code> .</p>
 </section>
 <section id="rectified-enhanced-levy-score-reels">
 <h2>Rectified Enhanced Lévy Score (ReELS)<a class="headerlink" href="#rectified-enhanced-levy-score-reels" title="Permalink to this headline">#</a></h2>
@@ -519,19 +499,19 @@ S_\alpha(x) &amp; : x \in I_\alpha \\
 -\operatorname{sgn}(x) \hat{c}|x|^{\hat{\beta}} &amp; : \text { otherwise }
 \end{array} \quad \hat{\beta}(\alpha) \in(0,1) .\right.\end{split}\]</div>
 <p>.</p>
+<!-- 
+# Score-based generative model with Levy processes
+
+Concluding our exploration of TorchLevy's capabilities, we present [score-based generative model with Levy processes](https://openreview.net/forum?id=ErzyBArv6Ue) which introduces Symmetric $\alpha$-stable noise as a replacement for traditional Gaussian noise in a diffusion model. This unique approach, made possible through the use of torchlevy, offers a novel approach to generating data. Our experimentation has demonstrated that this method performs comparably to DDPM, while achieving a faster convergence rate.
+
+```{figure} assets/combined.gif
+---
+width: 35em
+name: combined
+---
+comparison betweem Ours(left) and DDPM(right) sampling. Generation based on Levy process(left) shows faster reconstruction speed. 
+```-->
 </section>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="score-based-generative-model-with-levy-processes">
-<h1>Score-based generative model with Levy processes<a class="headerlink" href="#score-based-generative-model-with-levy-processes" title="Permalink to this headline">#</a></h1>
-<p>Concluding our exploration of TorchLevy’s capabilities, we present <a class="reference external" href="https://openreview.net/forum?id=ErzyBArv6Ue">score-based generative model with Levy processes</a> which introduces Symmetric alpha stable noise as a replacement for traditional Gaussian noise in a diffusion model. This unique approach, made possible through the use of torchlevy, offers a novel approach to generating data. Our experimentation has demonstrated that this method performs comparably to DDPM, while achieving a faster convergence rate.</p>
-<figure class="align-default" id="combined">
-<a class="reference internal image-reference" href="_images/combined.gif"><img alt="_images/combined.gif" src="_images/combined.gif" style="width: 35em;" /></a>
-<figcaption>
-<p><span class="caption-number">Fig. 4 </span><span class="caption-text">comparison betweem Ours(left) and DDPM(right) sampling. Generation based on Levy process(left) shows faster reconstruction speed.</span><a class="headerlink" href="#combined" title="Permalink to this image">#</a></p>
-</figcaption>
-</figure>
-<div class="toctree-wrapper compound">
-</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -561,13 +541,6 @@ S_\alpha(x) &amp; : x \in I_\alpha \\
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='right-next' id="next-link" href="markdown.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Markdown Files</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
 </div>
             </footer>
         </div>
