@@ -318,8 +318,13 @@ title="Print to PDF"
   </a>
   <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#performance-boost">
-     Performance boost
+    <a class="reference internal nav-link" href="#performance-boost-via-parerallism">
+     Performance boost via parerallism
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#performance-boost-via-caching">
+     performance boost via caching
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
@@ -368,8 +373,13 @@ title="Print to PDF"
   </a>
   <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#performance-boost">
-     Performance boost
+    <a class="reference internal nav-link" href="#performance-boost-via-parerallism">
+     Performance boost via parerallism
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#performance-boost-via-caching">
+     performance boost via caching
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
@@ -432,8 +442,8 @@ title="Print to PDF"
 <section class="tex2jax_ignore mathjax_ignore" id="why-use-torchlevy">
 <h1>Why use TorchLevy?<a class="headerlink" href="#why-use-torchlevy" title="Permalink to this headline">#</a></h1>
 <p>Previously, the <code class="docutils literal notranslate"><span class="pre">class</span> <span class="pre">levy_stable</span></code> of <code class="docutils literal notranslate"><span class="pre">scipy</span></code> provided pdf and sampling functions for <span class="math notranslate nohighlight">\(\alpha\)</span>-stable distribution. However, the article below explains the advantage of using <code class="docutils literal notranslate"><span class="pre">torchlevy</span></code> rather than <code class="docutils literal notranslate"><span class="pre">scipy</span></code>.</p>
-<section id="performance-boost">
-<h2>Performance boost<a class="headerlink" href="#performance-boost" title="Permalink to this headline">#</a></h2>
+<section id="performance-boost-via-parerallism">
+<h2>Performance boost via parerallism<a class="headerlink" href="#performance-boost-via-parerallism" title="Permalink to this headline">#</a></h2>
 <p>By utilizing TorchLevy, it is possible to achieve a staggering <strong>performance boost of over x1000</strong> in comparison to using <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.levy_stable.html">scipy’s levy_stable</a> function. This means that computationally demanding tasks, such as those involved in deep learning, can be efficiently carried out with minimal overhead, including sampling and calculating probability density functions. For a more detailed breakdown of these figures, please refer to the table provided below.</p>
 <table class="colwidths-auto table">
 <thead>
@@ -457,6 +467,10 @@ title="Print to PDF"
 </tbody>
 </table>
 <p>The significant increase was made possible through the implementation of two forms of parallel computing. The first involved the parallelization of input samples through the use of matrix operations, which enabled concurrent processing without interdependent inputs. The second involved the parallelization of integration through the transformation of both the likelihood and score into Fourier transforms and the utilization of numerical integration techniques. In order to facilitate this parallelism, we employed the python module <a class="reference external" href="https://github.com/esa/torchquad">torchquad</a>.</p>
+</section>
+<section id="performance-boost-via-caching">
+<h2>performance boost via caching<a class="headerlink" href="#performance-boost-via-caching" title="Permalink to this headline">#</a></h2>
+<p>In addition to these parallelization techniques, TorchLevy also offers a caching function to further improve performance by reducing computation costs and conserving memory. This function stores outputs at 0.01 intervals in advance and calculates them using linear interpolation. The interpolation process is also parallelized using the torch library and can be easily accessed by setting the <code class="docutils literal notranslate"><span class="pre">is_cache=True</span></code> during function calls from the <code class="docutils literal notranslate"><span class="pre">class</span> <span class="pre">TorchLevy</span></code>. Caching is useful when a function call is repeatedly needed.</p>
 </section>
 <section id="isotropic-alpha-stable-distribution">
 <h2>Isotropic <span class="math notranslate nohighlight">\(\alpha\)</span>-stable distribution<a class="headerlink" href="#isotropic-alpha-stable-distribution" title="Permalink to this headline">#</a></h2>

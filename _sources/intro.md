@@ -49,7 +49,7 @@ One important property of $\alpha$-stable Lévy processes is the **jump property
 
 Previously, the `class levy_stable` of `scipy` provided pdf and sampling functions for $\alpha$-stable distribution. However, the article below explains the advantage of using `torchlevy` rather than `scipy`.
 
-## Performance boost
+## Performance boost via parerallism
 By utilizing TorchLevy, it is possible to achieve a staggering **performance boost of over x1000** in comparison to using [scipy's levy_stable](https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.levy_stable.html) function. This means that computationally demanding tasks, such as those involved in deep learning, can be efficiently carried out with minimal overhead, including sampling and calculating probability density functions. For a more detailed breakdown of these figures, please refer to the table provided below.
 
 |  | sampling | score | likelihood |
@@ -60,6 +60,9 @@ By utilizing TorchLevy, it is possible to achieve a staggering **performance boo
 
 The significant increase was made possible through the implementation of two forms of parallel computing. The first involved the parallelization of input samples through the use of matrix operations, which enabled concurrent processing without interdependent inputs. The second involved the parallelization of integration through the transformation of both the likelihood and score into Fourier transforms and the utilization of numerical integration techniques. In order to facilitate this parallelism, we employed the python module [torchquad](https://github.com/esa/torchquad).
 
+## performance boost via caching
+
+In addition to these parallelization techniques, TorchLevy also offers a caching function to further improve performance by reducing computation costs and conserving memory. This function stores outputs at 0.01 intervals in advance and calculates them using linear interpolation. The interpolation process is also parallelized using the torch library and can be easily accessed by setting the `is_cache=True` during function calls from the `class TorchLevy`. Caching is useful when a function call is repeatedly needed.
 
 ## Isotropic $\alpha$-stable distribution
 
