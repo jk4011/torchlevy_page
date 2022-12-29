@@ -54,6 +54,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="&lt;no title&gt;" href="levy_stable.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -306,12 +307,12 @@ title="Print to PDF"
   <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#performance-boost">
-     performance boost
+     Performance boost
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#isotropic-alpha-stable-distribution">
-     isotropic
+     Isotropic
      <span class="math notranslate nohighlight">
       \(\alpha\)
      </span>
@@ -320,7 +321,7 @@ title="Print to PDF"
    </li>
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#combined-score-of-normal-and-alpha-stable-distribution">
-     combined score of normal and
+     Combined score of normal and
      <span class="math notranslate nohighlight">
       \(\alpha\)
      </span>
@@ -370,12 +371,12 @@ title="Print to PDF"
   <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#performance-boost">
-     performance boost
+     Performance boost
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#isotropic-alpha-stable-distribution">
-     isotropic
+     Isotropic
      <span class="math notranslate nohighlight">
       \(\alpha\)
      </span>
@@ -384,7 +385,7 @@ title="Print to PDF"
    </li>
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#combined-score-of-normal-and-alpha-stable-distribution">
-     combined score of normal and
+     Combined score of normal and
      <span class="math notranslate nohighlight">
       \(\alpha\)
      </span>
@@ -448,7 +449,7 @@ title="Print to PDF"
 <h1>Why use TorchLevy?<a class="headerlink" href="#why-use-torchlevy" title="Permalink to this headline">#</a></h1>
 <p>Previously, the <code class="docutils literal notranslate"><span class="pre">class</span> <span class="pre">levy_stable</span></code> of <code class="docutils literal notranslate"><span class="pre">scipy</span></code> provided pdf and sampling functions for <span class="math notranslate nohighlight">\(\alpha\)</span>-stable distribution. However, the article below explains the advantage of using <code class="docutils literal notranslate"><span class="pre">torchlevy</span></code> rather than <code class="docutils literal notranslate"><span class="pre">scipy</span></code>.</p>
 <section id="performance-boost">
-<h2>performance boost<a class="headerlink" href="#performance-boost" title="Permalink to this headline">#</a></h2>
+<h2>Performance boost<a class="headerlink" href="#performance-boost" title="Permalink to this headline">#</a></h2>
 <p>By utilizing TorchLevy, it is possible to achieve a staggering <strong>performance boost of over x1000</strong> in comparison to using <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.levy_stable.html">scipy’s levy_stable</a> function. This means that computationally demanding tasks, such as those involved in deep learning, can be efficiently carried out with minimal overhead, including sampling and calculating probability density functions. For a more detailed breakdown of these figures, please refer to the table provided below.</p>
 <table class="colwidths-auto table">
 <thead>
@@ -474,7 +475,7 @@ title="Print to PDF"
 <p>The significant increase was made possible through the implementation of two forms of parallel computing. The first involved the parallelization of input samples through the use of matrix operations, which enabled concurrent processing without interdependent inputs. The second involved the parallelization of integration through the transformation of both the likelihood and score into Fourier transforms and the utilization of numerical integration techniques. In order to facilitate this parallelism, we employed the python module <a class="reference external" href="https://github.com/esa/torchquad">torchquad</a>.</p>
 </section>
 <section id="isotropic-alpha-stable-distribution">
-<h2>isotropic <span class="math notranslate nohighlight">\(\alpha\)</span>-stable distribution<a class="headerlink" href="#isotropic-alpha-stable-distribution" title="Permalink to this headline">#</a></h2>
+<h2>Isotropic <span class="math notranslate nohighlight">\(\alpha\)</span>-stable distribution<a class="headerlink" href="#isotropic-alpha-stable-distribution" title="Permalink to this headline">#</a></h2>
 <figure class="align-default" id="sample-plot-comparison">
 <a class="reference internal image-reference" href="_images/sample_plot_comparison.png"><img alt="_images/sample_plot_comparison.png" src="_images/sample_plot_comparison.png" style="width: 30em;" /></a>
 <figcaption>
@@ -484,7 +485,7 @@ title="Print to PDF"
 <p>The extension of the <span class="math notranslate nohighlight">\(\alpha\)</span>-stable distribution to <span class="math notranslate nohighlight">\(n\)</span> dimensions results in a distribution that <strong>lacks isotropy</strong>, unlike the n-dimensional normal distribution. In our research, we discovered that the isotropy of noise is crucial for the performance of the score-base generative model. To address this, we propose an <strong>isotropic alpha-stable distribution</strong>, which preserves the heavy tail characteristics of the standard <span class="math notranslate nohighlight">\(\alpha\)</span>-stable distribution while also exhibiting isotropy. TorchLevy library offers sampling, probability density function, and score function implementations for the isotropic <span class="math notranslate nohighlight">\(\alpha\)</span>-stable distribution. These functions can be easily accessed by setting the parameter <code class="docutils literal notranslate"><span class="pre">is_isotropic=True</span></code> when calling functions from <code class="docutils literal notranslate"><span class="pre">class</span> <span class="pre">LevyStable</span></code>.</p>
 </section>
 <section id="combined-score-of-normal-and-alpha-stable-distribution">
-<h2>combined score of normal and <span class="math notranslate nohighlight">\(\alpha\)</span>-stable distribution<a class="headerlink" href="#combined-score-of-normal-and-alpha-stable-distribution" title="Permalink to this headline">#</a></h2>
+<h2>Combined score of normal and <span class="math notranslate nohighlight">\(\alpha\)</span>-stable distribution<a class="headerlink" href="#combined-score-of-normal-and-alpha-stable-distribution" title="Permalink to this headline">#</a></h2>
 <p>The Time-reversal formula for SDEs with Lévy Processes is given by the following equation.</p>
 <div class="math notranslate nohighlight">
 \[d \overleftarrow{X}_t=\left(b\left(t, \overleftarrow{X}_t\right)-\sigma_B^2(t) \partial_x \log p_t\left(\overleftarrow{X}_t\right)-\alpha \cdot \sigma_L^\alpha(t) \frac{\partial_{|x|}^{\alpha-2} \nabla_x p_t\left(\vec{X}_t\right)}{p_t\left(\vec{X}_t\right)}\right) d t+\sigma_B(t) d \bar{B}_t+\sigma_L(t) d \bar{L}_t^\alpha\]</div>
@@ -512,6 +513,8 @@ name: combined
 comparison betweem Ours(left) and DDPM(right) sampling. Generation based on Levy process(left) shows faster reconstruction speed. 
 ```-->
 </section>
+<div class="toctree-wrapper compound">
+</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -541,6 +544,13 @@ comparison betweem Ours(left) and DDPM(right) sampling. Generation based on Levy
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
+    <a class='right-next' id="next-link" href="levy_stable.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">&lt;no title&gt;</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
 </div>
             </footer>
         </div>

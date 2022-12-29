@@ -49,7 +49,7 @@ One important property of $\alpha$-stable Lévy processes is the **jump property
 
 Previously, the `class levy_stable` of `scipy` provided pdf and sampling functions for $\alpha$-stable distribution. However, the article below explains the advantage of using `torchlevy` rather than `scipy`.
 
-## performance boost
+## Performance boost
 By utilizing TorchLevy, it is possible to achieve a staggering **performance boost of over x1000** in comparison to using [scipy's levy_stable](https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.levy_stable.html) function. This means that computationally demanding tasks, such as those involved in deep learning, can be efficiently carried out with minimal overhead, including sampling and calculating probability density functions. For a more detailed breakdown of these figures, please refer to the table provided below.
 
 |  | sampling | score | likelihood |
@@ -61,7 +61,7 @@ By utilizing TorchLevy, it is possible to achieve a staggering **performance boo
 The significant increase was made possible through the implementation of two forms of parallel computing. The first involved the parallelization of input samples through the use of matrix operations, which enabled concurrent processing without interdependent inputs. The second involved the parallelization of integration through the transformation of both the likelihood and score into Fourier transforms and the utilization of numerical integration techniques. In order to facilitate this parallelism, we employed the python module [torchquad](https://github.com/esa/torchquad).
 
 
-## isotropic $\alpha$-stable distribution
+## Isotropic $\alpha$-stable distribution
 
 ```{figure} assets/sample_plot_comparison.png
 ---
@@ -74,7 +74,7 @@ name: sample_plot_comparison
 
 The extension of the $\alpha$-stable distribution to $n$ dimensions results in a distribution that **lacks isotropy**, unlike the n-dimensional normal distribution. In our research, we discovered that the isotropy of noise is crucial for the performance of the score-base generative model. To address this, we propose an **isotropic alpha-stable distribution**, which preserves the heavy tail characteristics of the standard $\alpha$-stable distribution while also exhibiting isotropy. TorchLevy library offers sampling, probability density function, and score function implementations for the isotropic $\alpha$-stable distribution. These functions can be easily accessed by setting the parameter `is_isotropic=True` when calling functions from `class LevyStable`.
 
-## combined score of normal and $\alpha$-stable distribution
+## Combined score of normal and $\alpha$-stable distribution
 
 The Time-reversal formula for SDEs with Lévy Processes is given by the following equation. 
 
