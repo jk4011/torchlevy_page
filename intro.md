@@ -2,7 +2,7 @@
 
 ![Untitled](assets/Untitled.png)
 
-**Torchlevy** is a framework for PyTorch that enables the utilization of **$\alpha$-stable distributions** within the context of **Levy Processes**. It provides functionality for calculating probability density functions, generating samples, and calculating score associated with these distributions.
+**Torchlevy** is a framework for PyTorch that enables the utilization of **$\alpha$-stable distributions**. It provides functionality for calculating probability density functions, generating samples, and calculating score associated with these distributions.
 # Preliminary
 
 
@@ -16,9 +16,9 @@ class: note, dropdown
 width: 35em
 name: ConvLNP
 ---
-Symmetric $\alpha$-stable distributions at multiple $\alpha$. The tail gets heavier as $\alpha$ descreases
+Symmetric $\alpha$-stable distributions at multiple $\alpha$. The tail gets heavier as $\alpha$ descreases.
 
-**Alpha-stable distributions** are a class of heavy-tailed probability distributions that are characterized by the fact that they are stable under linear combinations. Alpha-stable distributions are also known for their heavy-tailed behavior, which means that they have thicker tails than the normal distribution and are more likely to produce large deviations from the mean. 
+**Alpha-stable distributions** are a class of heavy-tailed probability distributions that are characterized by the fact that they are stable under linear combinations. Alpha-stable distributions are also known for their heavy-tailed behavior, which means that they have thicker tails than the normal distribution and have infinite variance unlike gaussian distributions
 
 **Symmetric** $\alpha$-stable distributions are a subclass of $\alpha$-stable distributions that are symmetric around the mean, which means that the distribution is the same whether you reflect it about the mean or not. In other words, if X is a random variable distributed according to a symmetric $\alpha$-stable distribution, then the distribution of -X is the same as the distribution of X.
 
