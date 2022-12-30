@@ -1,0 +1,697 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>torchlevy.stable_dist &#8212; My Jupyter Book</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="torchlevy.combined_dist" href="combined_dist.html" />
+    <link rel="prev" title="Introduction" href="intro.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">My Jupyter Book</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Introduction
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   torchlevy.stable_dist
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="combined_dist.html">
+   torchlevy.combined_dist
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="fractional_MCMC.html">
+   fractional MCMC
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/executablebooks/jupyter-book"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fstable_dist.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/stable_dist.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   torchlevy.stable_dist
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#function">
+   Function
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#torchlevy-stable-dist-sample">
+     torchlevy.stable_dist.sample
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#torchlevy-stable-dist-pdf">
+     torchlevy.stable_dist.pdf
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#torchlevy-stable-dist-score">
+     torchlevy.stable_dist.score
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>torchlevy.stable_dist</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   torchlevy.stable_dist
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#function">
+   Function
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#torchlevy-stable-dist-sample">
+     torchlevy.stable_dist.sample
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#torchlevy-stable-dist-pdf">
+     torchlevy.stable_dist.pdf
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#torchlevy-stable-dist-score">
+     torchlevy.stable_dist.score
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="torchlevy-stable-dist">
+<h1>torchlevy.stable_dist<a class="headerlink" href="#torchlevy-stable-dist" title="Permalink to this headline">#</a></h1>
+<p>Supports the sample, pdf, and score functions from <span class="math notranslate nohighlight">\(\alpha\)</span>-stable distribution.</p>
+<!-- # Background
+
+- $\alpha$-stable distribution
+    
+    The distribution for `stable_dist` has characteristic function:
+    
+    $$
+    \varphi(t, \alpha, \beta, c, \mu)=e^{i t \mu-|c t|^\alpha(1-i \beta \operatorname{sign}(t) \Phi(\alpha, t))}
+    $$
+    
+    where $*μ ∈ \R*$ is a shift parameter, $\beta \in [-1,1]$, called the *skewness parameter*
+    , is a measure of asymmetry.
+    
+    where two different parameterizations are supported. 
+    
+    The first $S_1$:
+    
+    $$
+    \Phi= \begin{cases}\tan \left(\frac{\pi \alpha}{2}\right) & \alpha \neq 1 \\ -\frac{2}{\pi} \log |t| & \alpha=1\end{cases}
+    $$
+    
+    The second $S_0$:
+    
+    $$
+    \Phi= \begin{cases}-\tan \left(\frac{\pi \alpha}{2}\right)\left(|c t|^{1-\alpha}-1\right) & \alpha \neq 1 \\ -\frac{2}{\pi} \log |c t| & \alpha=1\end{cases}
+    $$
+    
+    In TorchLevy, the implementation follows second $S_1$.
+    
+    The probability density function for `stable_dist` is:
+    
+    $$
+    f(x)=\frac{1}{2 \pi} \int_{-\infty}^{\infty} \varphi(t) e^{-i x t} d t
+    $$
+    
+    where $−∞<t<∞$. This integral does not have a known closed form.
+    
+- isotropic $\alpha$-stable distribution
+    
+    1 dimmention에서는 symmetric 하면 isotropic이다. 하지만, n>2 부터는 symmteric 하면 isotropic이 되는 것은 아니다. multiple dimention에서 isotropic한 $\alpha$-stable distribution을 위한 equation은 다음과 같다. 
+    
+    $\mu=0, \beta=0$ 
+    
+    isotropic 하기 위해서는 mean이 0이 되고, skew가 없어야 합니다. 따라서 $*μ ∈ \R*$ is a shift parameter, $\beta \in [-1,1]$, called the *skewness paramete* , both become 0.
+    
+    Then the characteristic function과 pdf 가 단순화가 된다:
+    
+     $\varphi(t, \alpha, c)=e^{-|c t|^\alpha}$
+    
+    $f(x)=\frac{1}{2 \pi} \int_{-\infty}^{\infty} \varphi(t) e^{-i x t} d t= \frac{1}{2 \pi} \int_{-\infty}^{\infty} e^{-|c t|^\alpha} e^{-i x t} d t$
+    
+    이 함수를 multi dimention으로 확장하면 isotropic 하게 강제할 수 있다. 
+    
+    $f(\bold{x})=\frac{1}{(2 \pi)^d} \int_{\bold{u} \in \mathbb{R}^d} e^{-\|c\bold{u}\|^\alpha} e^{-i\langle \bold{x}, \bold{u}\rangle} d \bold{u}$ 
+    
+    - equation
+        
+        isotropic symmetric alpha stable
+        
+        $f(x) = \int_0^{\infty} e^{-r^\alpha} r^{\frac{d}{2}} J_{\frac{d}{2}-1}(r\|x\|) d r \frac{1}{\|x\|^{\frac{d}{2}-1}} \frac{1}{(2 \pi)^{\frac{d}{2}}}$, where $J$ is bessel function -->
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="function">
+<h1>Function<a class="headerlink" href="#function" title="Permalink to this headline">#</a></h1>
+<section id="torchlevy-stable-dist-sample">
+<h2>torchlevy.stable_dist.<a class="reference external" href="https://github.com/UNIST-LIM-Lab/torchlevy/blob/785de661b4e2819a8c2cb7af6884513c888fa14c/torchlevy/levy.py#L286-L304">sample</a><a class="headerlink" href="#torchlevy-stable-dist-sample" title="Permalink to this headline">#</a></h2>
+<p><strong>Parameters:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">alpha</span></code> (float): The stability parameter of the distribution, must be in the range (0, 2].</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">beta</span></code> (float): The skewness parameter of the distribution, must be in the range [-1, 1].</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">size</span></code> (int or tuple of ints): The shape of the sample to generate.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">loc</span></code> (float): The location parameter of the distribution.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">scale</span></code> (float): The scale parameter of the distribution.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">type</span></code> (torch.dtype): The data type of the sample.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">reject_threshold</span></code> (float): The threshold for rejecting samples based on a criterion.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">is_isotropic</span></code> (bool): Whether to generate an isotropic sample.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">clamp_threshold</span></code> (float): The threshold for sample clamping</p></li>
+</ul>
+<p><strong>Returns:</strong></p>
+<ul class="simple">
+<li><p>A sample from a symmetric alpha-stable distribution with the specified parameters</p></li>
+</ul>
+<p><strong>Examples</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">torchlevy</span> <span class="kn">import</span> <span class="n">stable_dist</span>
+
+<span class="n">sample</span> <span class="o">=</span> <span class="n">stable_dist</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;min : </span><span class="si">{</span><span class="n">sample</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;max : </span><span class="si">{</span><span class="n">sample</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="c1"># min : -544.177001953125</span>
+<span class="c1"># max : 426.45806884765625</span>
+</pre></div>
+</div>
+<p>The code above serves as a prime illustration of the heavy tail characteristic inherent in the alpha stable distribution. It is evident that both the minimum and maximum values are considerably distant from the mode.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">from</span> <span class="nn">torchlevy</span> <span class="kn">import</span> <span class="n">stable_dist</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">sample</span> <span class="o">=</span> <span class="n">stable_dist</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">1.7</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">sample</span><span class="o">.</span><span class="n">cpu</span><span class="p">(),</span> <span class="mi">2000</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;samples&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">0.15</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">15</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<figure class="align-default" id="sample-dist">
+<a class="reference internal image-reference" href="_images/sample_dist.png"><img alt="_images/sample_dist.png" src="_images/sample_dist.png" style="width: 30em;" /></a>
+</figure>
+<p>As demonstrated in the code above, the alpha stable sample conforms closely to the distribution of a ball shape.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">torchlevy</span> <span class="kn">import</span> <span class="n">stable_dist</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">alpha</span> <span class="o">=</span> <span class="mf">1.5</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
+<span class="n">non_isotropic_noise</span> <span class="o">=</span> <span class="n">stable_dist</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">[</span><span class="mi">10000</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">is_isotropic</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">non_isotropic_noise</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">non_isotropic_noise</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="o">-</span><span class="mi">30</span><span class="p">,</span> <span class="mi">30</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="o">-</span><span class="mi">30</span><span class="p">,</span> <span class="mi">30</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;non-isotropic&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">)</span>
+<span class="n">isotropic_noise</span> <span class="o">=</span> <span class="n">stable_dist</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">[</span><span class="mi">10000</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">is_isotropic</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">isotropic_noise</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">isotropic_noise</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="o">-</span><span class="mi">30</span><span class="p">,</span> <span class="mi">30</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="o">-</span><span class="mi">30</span><span class="p">,</span> <span class="mi">30</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;isotropic&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><img alt="Untitled" src="_images/comparison.png" /></p>
+<p>The example above is a comparison between the <strong>symmetric</strong> alpha table distribution and the <strong>isotropic</strong> alpha table. In the plot on the left, the x and y coordinates of the point of dimension are independently sampled. As a result, you can see that most samples are near axis. On the other hand, in the plot on the right, the point was sampled from the 2d isotropc distribution. As a result, it can be seen that there is generally an invariant distribution in the direction.</p>
+</section>
+<hr class="docutils" />
+<section id="torchlevy-stable-dist-pdf">
+<h2>torchlevy.stable_dist.<a class="reference external" href="https://github.com/UNIST-LIM-Lab/torchlevy/blob/785de661b4e2819a8c2cb7af6884513c888fa14c/torchlevy/levy.py#L13-L33">pdf</a><a class="headerlink" href="#torchlevy-stable-dist-pdf" title="Permalink to this headline">#</a></h2>
+<p><strong>Parameters:</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">x</span></code>: a tensor of values at which the PDF is evaluated.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">alpha</span></code>: alpha parameter of the symmetric alpha-stable distribution.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">beta</span></code>: beta parameter of the symmetric alpha-stable distribution.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">is_cache</span></code>: a boolean indicating whether sampling should be based on the linear interpolation of cached values within a 0.01 interval.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">is_isotropic</span></code>: a boolean indicating whether the distribution should be isotropic, i.e. rotationally symmetrical and the same in all directions.</p></li>
+</ul>
+<p><strong>Returns</strong>:</p>
+<ul class="simple">
+<li><p>a tensor representing the PDF of the symmetric alpha-stable distribution.</p></li>
+</ul>
+<p><strong>Examples</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">from</span> <span class="nn">torchlevy</span> <span class="kn">import</span> <span class="n">stable_dist</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">stable_dist</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">1.7</span><span class="p">))</span>
+<span class="c1"># tensor([0.0928, 0.1477, 0.2108, 0.2633, 0.2840, 0.2633, 0.2108, 0.1477])</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">15</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
+<span class="n">alphas</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.2</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">1.8</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">alpha</span> <span class="ow">in</span> <span class="n">alphas</span><span class="p">:</span>
+    <span class="n">pdf</span> <span class="o">=</span> <span class="n">stable_dist</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">alpha</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">cpu</span><span class="p">(),</span> <span class="n">pdf</span><span class="o">.</span><span class="n">cpu</span><span class="p">(),</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;alpha=</span><span class="si">{</span><span class="n">alpha</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">((</span><span class="o">-</span><span class="n">range_</span><span class="p">,</span> <span class="n">range_</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<figure class="align-default" id="scores">
+<a class="reference internal image-reference" href="_images/dists.png"><img alt="_images/dists.png" src="_images/dists.png" style="width: 30em;" /></a>
+</figure>
+</section>
+<hr class="docutils" />
+<section id="torchlevy-stable-dist-score">
+<h2>torchlevy.stable_dist.<a class="reference external" href="https://github.com/UNIST-LIM-Lab/torchlevy/blob/785de661b4e2819a8c2cb7af6884513c888fa14c/torchlevy/levy.py#L182-L203">score</a><a class="headerlink" href="#torchlevy-stable-dist-score" title="Permalink to this headline">#</a></h2>
+<p><strong>Parameters:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">x</span></code> : a tensor of values at which the score function is evaluated.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">alpha</span></code> : a float representing the alpha parameter of the symmetric alpha-stable distribution.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">beta</span></code> : a float representing the beta parameter of the symmetric alpha-stable distribution.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">type</span></code> : a string indicating the type of score function to compute. Options are:</p>
+<ul>
+<li><p>“cft”: using the Fourier transform.</p></li>
+<li><p>“cft2”: using an alternative formulation of the Fourier transform.</p></li>
+<li><p>“backpropagation”: using backpropagation of the probability density function (PDF). Note: this option requires more memory.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">is_isotropic</span></code> : a boolean indicating whether the distribution is isotropic.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">is_fdsm</span></code> : a boolean indicating whether the score function is expressed as fractional DSM.</p></li>
+</ul>
+<p><strong>Returns:</strong></p>
+<ul class="simple">
+<li><p>a tensor representing the score function of the symmetric alpha-stable distribution.</p></li>
+</ul>
+<p><strong>Examples</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">from</span> <span class="nn">torchlevy</span> <span class="kn">import</span> <span class="n">stable_dist</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">stable_dist</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">1.7</span><span class="p">))</span>
+<span class="c1"># tensor([ 1.1765,  0.8824,  0.5882,  0.2941,  0.0000, -0.2941, -0.5882, -0.8824])</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">from</span> <span class="nn">torchlevy</span> <span class="kn">import</span> <span class="n">stable_dist</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">range_</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="n">range_</span><span class="p">,</span> <span class="n">range_</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
+
+<span class="n">alphas</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.2</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">1.8</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">alpha</span> <span class="ow">in</span> <span class="n">alphas</span><span class="p">:</span>
+    <span class="n">score</span> <span class="o">=</span> <span class="n">stable_dist</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">alpha</span><span class="p">)</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">cpu</span><span class="p">(),</span> <span class="n">score</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;alpha=</span><span class="si">{</span><span class="n">alpha</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">((</span><span class="o">-</span><span class="n">range_</span><span class="p">,</span> <span class="n">range_</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<figure class="align-default" id="id1">
+<a class="reference internal image-reference" href="_images/scores.png"><img alt="_images/scores.png" src="_images/scores.png" style="width: 30em;" /></a>
+</figure>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="intro.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Introduction</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="combined_dist.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">torchlevy.combined_dist</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By The Jupyter Book Community<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
